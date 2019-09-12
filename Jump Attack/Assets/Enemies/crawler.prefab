@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 442665060676752009}
   - component: {fileID: 442665060676752014}
   - component: {fileID: 442665060676752021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: crawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -145,6 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 0.3
+  scorePopUp: {fileID: 3691995881796839437, guid: 559b688f69dd9814d8a12e81dfb1f6c5,
+    type: 3}
 --- !u!114 &442665060676752021
 MonoBehaviour:
   m_ObjectHideFlags: 0

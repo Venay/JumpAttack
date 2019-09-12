@@ -7,6 +7,16 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public GameObject player;
+    public float clearTimer;
+    //private void donotkill;
+
+    public TextMeshProUGUI debugText;
+    private bool clearable = false;
+    private float clearCountDown = 10f;
+    
+    private Color BGcolor;
+    //[SerializeField] private float deathTimer;
+    
 
     [Header("Death")]
     public GameObject deathUI;
@@ -17,9 +27,11 @@ public class gameManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioSource AS2;
+    public AudioSource AS12;
 
     [Header("Enemy Spawner")]
     public bool spawn = true;
+    public float spawnRange;
     public GameObject crawler;
     public GameObject creeper;
     public int spawnCount = 1;
@@ -28,6 +40,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        clearCountDown = clearTimer;
+        BGcolor = Camera.main.backgroundColor;
         //Debug.Log(new Vector3(-1, 1, 0) - Vector3.zero);
         Time.timeScale = 1;
         scoreText.text = score.ToString();
@@ -40,33 +54,61 @@ public class gameManager : MonoBehaviour
         
     }
 
-    /*e
-    void Update()
+    
+    void FixedUpdate()
     {
-        
-    }
-    */
+        clearCountDown -= Time.fixedDeltaTime;
+        Camera.main.backgroundColor = Color.Lerp( Color.red, BGcolor, clearCountDown / clearTimer);
 
-    public void updateScore(int addedScore)
+        if (clearCountDown <= 0)
+            player.GetComponent<HealthSystem>().damage(1);
+
+        if ((transform.childCount <= 0) && (clearable))
+        {
+            Debug.Log("clear");
+            clearable = false;
+            resetClear();
+        }
+        debugText.text = (Mathf.Round(clearCountDown * 10f) / 10f).ToString();
+    }
+    
+    
+    
+
+    public void updateScore(int addedScore,int scoreMulti)
     {
-        score += addedScore;
+        score += addedScore*scoreMulti;
         scoreText.text = score.ToString();
+        //scoreText.text = clearCountDown.ToString() + " - " + Time.fixedDeltaTime.ToString();
+        
+        //scoreText.text = transform.childCount.ToString();
+
     }
 
     void crawler_spawn()
     {
+        clearable = true;
         for (int i =0; i<spawnCount; i++)
         {
-            GameObject clone =  Instantiate(crawler, randomVector(), Quaternion.identity);
+            GameObject clone = Instantiate(crawler, randomVector(), Quaternion.identity, transform);
             clone.GetComponent<crawler_Controller>().target = player.transform;
+            //Debug.Log(transform.childCount);
         }
+    }
+
+    public void resetClear()
+    {
+        playAudio(12);
+        clearCountDown = clearTimer;
+        clearable = false;
     }
 
     void creeper_spawn()
     {
+        clearable = true;
         for (int i = 0; i < spawnCount; i++)
         {
-            GameObject clone = Instantiate(creeper, randomVector(), Quaternion.identity);
+            GameObject clone = Instantiate(creeper, randomVector(), Quaternion.identity, transform);
             clone.GetComponent<creeper_controller>().target = player.transform;
         }
     }
@@ -86,6 +128,9 @@ public class gameManager : MonoBehaviour
             case 3:
                 AS2.Play();
                 break;
+            case 12:
+                AS12.Play();
+                break;
         }
     }
 
@@ -96,13 +141,19 @@ public class gameManager : MonoBehaviour
 
     Vector3 randomVector()
     {
-        return new Vector3(Random.Range(-2.81f,2.81f), Random.Range(-5f,5f ), 0f);
+        Vector3 rando;
+        do
+            rando = new Vector3(Random.Range(-2.81f, 2.81f), Random.Range(-5f, 5f), 0f);
+        while (Vector3.Distance(player.transform.position, rando) < player.GetComponent<playerController>().attackRange);
+        return rando;
+        //return new Vector3(Random.Range(-2.81f,2.81f), Random.Range(-5f,5f ), 0f);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(transform.position, new Vector3(2.81f*2f, 5f*2, 1f));
+        Gizmos.DrawWireSphere(transform.position, spawnRange);
+        //Gizmos.DrawWireSphere(transform.position, 1.5f);
     }
 
 }

@@ -6,6 +6,7 @@ public class crawler_Controller : MonoBehaviour
 {
     public Transform target;
     public float speed;
+    //public GameObject scorePopUp;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class crawler_Controller : MonoBehaviour
 
     public void die()
     {
+        //Instantiate(scorePopUp, transform.position,Quaternion.identity);
         Destroy(this.gameObject);
     }
 }

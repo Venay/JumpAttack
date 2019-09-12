@@ -5,8 +5,9 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     public gameManager GM;
+    [SerializeField] public GameObject scorePop;
     public bool isMoving = false;
-    public float wind;
+    //public float wind;
 
     [Header("General Components")]
     public HealthSystem healthSystem;
@@ -57,21 +58,25 @@ public class playerController : MonoBehaviour
 
     void attack()
     {
-        
+        int scoreSum = 0;
         explosion.Emit(1);
         GM.playAudio(3);
-        Collider2D[] enemies =Physics2D.OverlapCircleAll(transform.position, attackRange);
+        
+        Collider2D[] enemies =Physics2D.OverlapCircleAll(transform.position, attackRange,  LayerMask.GetMask("Enemies"));
         foreach(Collider2D enemy in enemies)
         {
-            if (enemy.tag == "Enemy")
-            {
-                enemy.GetComponent<HealthSystem>().damage(1);
-                GM.updateScore(1);
-                
-            }
-                
+            //Debug.Log(enemy.name);
+            enemy.GetComponent<HealthSystem>().damage(1);
+            scoreSum += 1;
+            GameObject clone =Instantiate(scorePop, enemy.transform.position, Quaternion.identity);
+            clone.GetComponent<scorePopup>().textColor = enemy.GetComponent<SpriteRenderer>().color;
+            clone.GetComponent<scorePopup>().score = 1*enemies.Length;
 
         }
+
+
+        GM.updateScore(scoreSum,enemies.Length);
+        //GM.checkClear();
 
     }
 

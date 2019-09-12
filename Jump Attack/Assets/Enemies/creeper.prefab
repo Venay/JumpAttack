@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3768407154162217354}
   - component: {fileID: 3768407154162217355}
   - component: {fileID: 3768407154162217348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: creeper
   m_TagString: Enemy
   m_Icon: {fileID: 0}

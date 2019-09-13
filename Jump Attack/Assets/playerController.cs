@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour
     [Header("Attack Controls")]
     public ParticleSystem explosion;
     public float attackRange = 1f;
+    int playerMana = 0;
 
 
     
@@ -76,6 +77,7 @@ public class playerController : MonoBehaviour
 
 
         GM.updateScore(scoreSum,enemies.Length);
+        playerMana += scoreSum * enemies.Length;
         //GM.checkClear();
 
     }

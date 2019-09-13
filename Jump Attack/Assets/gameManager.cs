@@ -59,9 +59,10 @@ public class gameManager : MonoBehaviour
     {
         clearCountDown -= Time.fixedDeltaTime;
         Camera.main.backgroundColor = Color.Lerp( Color.red, BGcolor, clearCountDown / clearTimer);
-
+        /*
         if (clearCountDown <= 0)
             player.GetComponent<HealthSystem>().damage(1);
+         */
 
         if ((transform.childCount <= 0) && (clearable))
         {

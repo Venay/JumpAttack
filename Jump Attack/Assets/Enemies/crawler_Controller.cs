@@ -6,6 +6,7 @@ public class crawler_Controller : MonoBehaviour
 {
     public Transform target;
     public float speed;
+	//public GameObject GM;
     //public GameObject scorePopUp;
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,13 @@ public class crawler_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.tag == "Player") && (!collision.gameObject.GetComponent<playerController>().isMoving))
-            collision.GetComponent<HealthSystem>().damage(1);
-    }
+		if ((collision.tag == "Player") && (!collision.gameObject.GetComponent<playerController>().isMoving))
+			collision.GetComponent<HealthSystem>().damage(1);
+		else if ((collision.tag == "Player") && (!collision.gameObject.GetComponent<playerController>().isMoving))
+			this.GetComponent<HealthSystem>().damage(1);
+
+		
+	}
 
     public void die()
     {

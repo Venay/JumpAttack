@@ -7,12 +7,12 @@ using TMPro;
 public class gameManager : MonoBehaviour
 {
     public GameObject player;
-    public float clearTimer;
+    //public float clearTimer;
     //private void donotkill;
 
     public TextMeshProUGUI debugText;
-    private bool clearable = false;
-    private float clearCountDown = 10f;
+    //private bool clearable = false;
+    //private float clearCountDown = 10f;
     
     private Color BGcolor;
     //[SerializeField] private float deathTimer;
@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     [Header("Score")]
     public TextMeshProUGUI scoreText;
     public int score;
+	public static int generalScore;
 
     [Header("Audio")]
     public AudioSource AS2;
@@ -34,13 +35,14 @@ public class gameManager : MonoBehaviour
     public float spawnRange;
     public GameObject crawler;
     public GameObject creeper;
+    public GameObject mine;
     public int spawnCount = 1;
     public float spawnRate = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        clearCountDown = clearTimer;
+        //clearCountDown = clearTimer;
         BGcolor = Camera.main.backgroundColor;
         //Debug.Log(new Vector3(-1, 1, 0) - Vector3.zero);
         Time.timeScale = 1;
@@ -55,14 +57,13 @@ public class gameManager : MonoBehaviour
     }
 
     
+    /*
     void FixedUpdate()
-    {
         clearCountDown -= Time.fixedDeltaTime;
         Camera.main.backgroundColor = Color.Lerp( Color.red, BGcolor, clearCountDown / clearTimer);
         /*
         if (clearCountDown <= 0)
             player.GetComponent<HealthSystem>().damage(1);
-         */
 
         if ((transform.childCount <= 0) && (clearable))
         {
@@ -70,8 +71,10 @@ public class gameManager : MonoBehaviour
             clearable = false;
             resetClear();
         }
-        debugText.text = (Mathf.Round(clearCountDown * 10f) / 10f).ToString();
+        //debugText.text = (Mathf.Round(clearCountDown * 10f) / 10f).ToString();
+		
     }
+         */
     
     
     
@@ -86,14 +89,23 @@ public class gameManager : MonoBehaviour
 
     }
 
+	/*
     void crawler_spawn()
     {
         clearable = true;
         for (int i =0; i<spawnCount; i++)
         {
+			//float randIt = Random.Range(0, 1);
+			if (Random.Range(0, 100) >= 5)
+			{ 
             GameObject clone = Instantiate(crawler, randomVector(), Quaternion.identity, transform);
             clone.GetComponent<crawler_Controller>().target = player.transform;
-            //Debug.Log(transform.childCount);
+			}else
+			{
+				GameObject clone = Instantiate(mine, randomVector(), Quaternion.identity, transform);
+				clone.GetComponent<mine_controller>().player = player;
+			}
+            
         }
     }
 
@@ -113,6 +125,7 @@ public class gameManager : MonoBehaviour
             clone.GetComponent<creeper_controller>().target = player.transform;
         }
     }
+	*/
 
     public void playerDead()
     {
@@ -149,6 +162,18 @@ public class gameManager : MonoBehaviour
         return rando;
         //return new Vector3(Random.Range(-2.81f,2.81f), Random.Range(-5f,5f ), 0f);
     }
+
+	public void pauseGame()
+	{
+		Time.timeScale = 0;
+	}
+
+	public void resumeGame()
+	{
+		Time.timeScale = 1;
+	}
+
+
 
     private void OnDrawGizmos()
     {

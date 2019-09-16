@@ -566,11 +566,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GM: {fileID: 1036931546}
-  player: {fileID: 1457110147}
+  player: {fileID: 1457110144}
   spawnCrawlers: 1
   crawler: {fileID: 442665060676752015, guid: b422a850fa1b07d4ab61df16f0a7f397, type: 3}
-  spawnCount: 20
-  spawnFreq: 0.2
+  spawnCount: 1
+  spawnFreq: 1
+  spawnSlimes: 1
+  slime: {fileID: 499656897572548753, guid: ab06eb4c2b872d647954893841e12750, type: 3}
+  slimeSpawnCount: 1
+  slimeSpawnFreq: 15
 --- !u!4 &741196993
 Transform:
   m_ObjectHideFlags: 0

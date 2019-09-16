@@ -100,6 +100,12 @@ public class playerController : MonoBehaviour
 
     }
 
+
+
+    
+
+
+
     public void die()
     {
         GM.playerDead();

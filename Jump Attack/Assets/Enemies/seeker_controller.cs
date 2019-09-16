@@ -9,11 +9,23 @@ public class seeker_controller : MonoBehaviour
 
 	public float speed = 1f;
 	public float rotationSpeed = 200f;
-    
 
-    
+    float defaultSpeed;
+
+
+
+    private void Start()
+    {
+        defaultSpeed = speed;
+    }
+
     void Update()
     {
+        if(Vector3.Distance(transform.position, player.position) < 3)
+        {
+            Debug.Log(speed);
+            speed = Mathf.Clamp( Mathf.Lerp(defaultSpeed * 10, 0, Vector3.Distance(transform.position, player.position) / 3), 0.01f, Mathf.Infinity);
+        }
 		
 		Vector2 direction = (player.position - transform.position).normalized;
 		RB.angularVelocity = -(Vector3.Cross(direction, transform.up).z) * rotationSpeed;

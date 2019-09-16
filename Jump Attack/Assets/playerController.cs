@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour
 
 		foreach (Collider2D enemy in enemies)
         {
-			Debug.Log(Vector3.Dot(enemy.transform.position - transform.position, transform.up) + enemy.name);
+			//Debug.Log(Vector3.Dot(enemy.transform.position - transform.position, transform.up) + enemy.name);
 			if ((Vector3.Dot(enemy.transform.position - transform.position, transform.up) >= 0) || ( Vector3.Distance(transform.position, enemy.transform.position) <= .5f))
 			{
 

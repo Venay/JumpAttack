@@ -18,7 +18,15 @@ public class spawner : MonoBehaviour
     public bool spawnSlimes = true;
     public GameObject slime;
     public int slimeSpawnCount = 1;
-    public float slimeSpawnFreq = 5f;
+    public float slimeSpawnFreq = 10f;
+
+
+    [Header("Spawning Seekers")]
+    public bool spawnSeekers = true;
+    public GameObject seeker;
+    public int seekerSpawnCount = 1;
+    public float seekerSpawnFreq = 15f;
+
 
 	//bool started = false;
 	int lastScore;
@@ -28,11 +36,13 @@ public class spawner : MonoBehaviour
 		crawlerSpawner = crawlerSpawnerCoroutine();
 		StartCoroutine(crawlerSpawner);
 		StartCoroutine(slimeSpawnerCoroutine());
+        StartCoroutine(seekerSpawnerCoroutine());
 		lastScore = GM.score;
 
 	}
 	
 
+        /*╕
     void Update()
     {
         lastScore = GM.score;
@@ -52,6 +62,7 @@ public class spawner : MonoBehaviour
 
 
     }
+            */
 
 	IEnumerator crawlerSpawnerCoroutine()
 	{
@@ -113,7 +124,44 @@ public class spawner : MonoBehaviour
 
 
 
+    IEnumerator seekerSpawnerCoroutine()
+    {
+        //started = true;
+        while (spawnSeekers)
+        {
+            yield return new WaitForSeconds(seekerSpawnFreq);
 
+
+            if (seekerSpawnCount == 1)
+            {
+                if ((Random.value > .5f))
+                {
+                    GameObject clone = Instantiate(seeker, randomSpawningPosition(), Quaternion.identity, transform);
+                    clone.GetComponent<seeker_controller>().player = player.transform;
+                    GameObject clone2 = Instantiate(seeker, randomSpawningPosition(), Quaternion.identity, transform);
+                    clone2.GetComponent<seeker_controller>().player = player.transform;
+
+                }
+                else
+                {
+                    GameObject clone = Instantiate(seeker, randomSpawningPosition(), Quaternion.identity, transform);
+                    clone.GetComponent<seeker_controller>().player = player.transform;
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= seekerSpawnCount; i++)
+                {
+                    GameObject clone = Instantiate(seeker, randomSpawningPosition(), Quaternion.identity, transform);
+                    clone.GetComponent<seeker_controller>().player = player.transform;
+
+                }
+            }
+            if (!spawnSeekers)
+                break;
+        }
+
+    }
 
 
 
@@ -129,9 +177,39 @@ public class spawner : MonoBehaviour
 	Vector3 randomSpawningPosition()
 	{
 		Vector3 P;
-		do
+        int lane = Random.Range(1, 4);
+        do
 		{
-			P = new Vector3(Random.Range(-2.8f, 2.8f), Random.Range(-5f, 5f), 0);
+            
+
+
+            switch (lane)
+            {
+                case 1:
+                    P = new Vector3(2.82f, Random.Range(-5f, 5f), 0);
+                    break;
+
+                case 2:
+                    P = new Vector3(-2.82f, Random.Range(-5f, 5f), 0);
+                    break;
+
+                case 3:
+                    P = new Vector3(Random.Range(-2.8f, 2.8f), 5.1f, 0);
+                    break;
+
+                case 4:
+                    P = new Vector3(Random.Range(-2.8f, 2.8f), 5.1f, 0);
+                    break;
+
+                default:
+                    P = new Vector3(2.82f, 5.1f, 0);
+                    break;
+
+
+            }
+
+
+			//P = new Vector3(Random.Range(-2.8f, 2.8f), Random.Range(-5f, 5f), 0);
 		} while (Vector3.Distance(player.transform.position, P) <= 1.5f);
 		return P;
 	}

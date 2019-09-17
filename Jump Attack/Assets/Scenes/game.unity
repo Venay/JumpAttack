@@ -262,7 +262,7 @@ Canvas:
   m_GameObject: {fileID: 133943379}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -272,7 +272,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &133943383
 RectTransform:
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 1036931546}
   player: {fileID: 1457110144}
-  spawnCrawlers: 0
+  spawnCrawlers: 1
   crawler: {fileID: 442665060676752015, guid: b422a850fa1b07d4ab61df16f0a7f397, type: 3}
   spawnCount: 3
   spawnFreq: 0.5
@@ -575,10 +575,10 @@ MonoBehaviour:
   slime: {fileID: 499656897572548753, guid: ab06eb4c2b872d647954893841e12750, type: 3}
   slimeSpawnCount: 1
   slimeSpawnFreq: 3
-  spawnSeekers: 0
+  spawnSeekers: 1
   seeker: {fileID: 8018150410401988473, guid: 3b30ba03717c11a4195a7dec5e384add, type: 3}
-  seekerSpawnCount: 1
-  seekerSpawnFreq: 15
+  seekerSpawnCount: 2
+  seekerSpawnFreq: 10
 --- !u!4 &741196993
 Transform:
   m_ObjectHideFlags: 0

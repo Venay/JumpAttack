@@ -177,7 +177,7 @@ public class spawner : MonoBehaviour
 	Vector3 randomSpawningPosition()
 	{
 		Vector3 P;
-        int lane = Random.Range(1, 4);
+        int lane = Random.Range(1, 5);
         do
 		{
             
@@ -198,11 +198,11 @@ public class spawner : MonoBehaviour
                     break;
 
                 case 4:
-                    P = new Vector3(Random.Range(-2.8f, 2.8f), 5.1f, 0);
+                    P = new Vector3(Random.Range(-2.8f, 2.8f), -5.1f, 0);
                     break;
 
                 default:
-                    P = new Vector3(2.82f, 5.1f, 0);
+                    P = Vector3.zero;
                     break;
 
 

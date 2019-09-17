@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   SR: {fileID: 3768407154162217350}
-  speed: 0.5
+  speed: 2
   flashCurve:
     serializedVersion: 2
     m_Curve:

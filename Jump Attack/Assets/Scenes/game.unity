@@ -567,15 +567,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 1036931546}
   player: {fileID: 1457110144}
-  spawnCrawlers: 1
+  spawnCrawlers: 0
   crawler: {fileID: 442665060676752015, guid: b422a850fa1b07d4ab61df16f0a7f397, type: 3}
-  spawnCount: 1
-  spawnFreq: 0.2
+  spawnCount: 3
+  spawnFreq: 0.5
   spawnSlimes: 1
   slime: {fileID: 499656897572548753, guid: ab06eb4c2b872d647954893841e12750, type: 3}
   slimeSpawnCount: 1
-  slimeSpawnFreq: 10
-  spawnSeekers: 1
+  slimeSpawnFreq: 3
+  spawnSeekers: 0
   seeker: {fileID: 8018150410401988473, guid: 3b30ba03717c11a4195a7dec5e384add, type: 3}
   seekerSpawnCount: 1
   seekerSpawnFreq: 15

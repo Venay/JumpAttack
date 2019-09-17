@@ -6,18 +6,19 @@ public class crawler_Controller : MonoBehaviour
 {
     public Transform target;
     public float speed;
+    public float minSpeed;
 	//public GameObject GM;
     //public GameObject scorePopUp;
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = Random.Range(minSpeed, speed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.position , speed * Time.deltaTime);
         transform.up = target.position - transform.position;
         Debug.DrawLine(transform.position, transform.position + transform.up);
         transform.Rotate(new Vector3(0, 0, 45f));

@@ -73,6 +73,7 @@ public class slime_controller : MonoBehaviour
         playerDefaultSpeed = player.GetComponent<playerController>().jumpDuration;
         player.GetComponent<playerController>().jumpDuration *= 2.25f;
         
+        
     }
     
 

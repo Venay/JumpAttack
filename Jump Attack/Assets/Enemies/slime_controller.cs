@@ -25,13 +25,13 @@ public class slime_controller : MonoBehaviour
     float playerDefaultSpeed = .5f;
     
 
-    
+    /*
     void Start()
     {
-        playerDefaultSpeed = player.GetComponent<playerController>().jumpDuration;
+        
         slime.transform.position = transform.position;
     }
-    
+    */
     
 
     // Update is called once per frame
@@ -50,12 +50,7 @@ public class slime_controller : MonoBehaviour
         }
 
         if (isStuck)
-        {
-            //print(Vector3.Angle(player.transform.up, transform.position - player.transform.position));
-            //player.GetComponent<playerController>().jumpDuration = playerDefaultSpeed + playerDefaultSpeed * 2 * Vector3.Angle(player.transform.up, transform.position - player.transform.position)/100;
-            //Debug.DrawRay(-player.transform.up, (player.transform.position - transform.position).normalized,Color.green);
             slime.transform.position = player.transform.position;
-        }
 
 
         line.SetPosition(0, transform.position);
@@ -76,9 +71,8 @@ public class slime_controller : MonoBehaviour
         isStuck = true;
         speed = detectionSpeed;
         playerDefaultSpeed = player.GetComponent<playerController>().jumpDuration;
-        player.GetComponent<playerController>().jumpDuration *= 2;
-
-        //Debug.Log(playerController.isMoving);
+        player.GetComponent<playerController>().jumpDuration *= 2.25f;
+        
         
     }
     
@@ -119,8 +113,7 @@ public class slime_controller : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawWireSphere(transform.position, detectionRadius);
-        Gizmos.color = Color.green;
-       // Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized);
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+
     }
 }

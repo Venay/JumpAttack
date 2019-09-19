@@ -27,15 +27,9 @@ public class spawner : MonoBehaviour
     public int seekerSpawnCount = 1;
     public float seekerSpawnFreq = 15f;
 
-    [Header("Goblin Seekers")]
-    public bool spawnGoblins = true;
-    public GameObject goblin;
-    public int goblinSpawnCount = 1;
-    public float goblinSpawnFreq = 15f;
 
-
-    //bool started = false;
-    int lastScore;
+	//bool started = false;
+	int lastScore;
     
     void Start()
     {
@@ -43,7 +37,6 @@ public class spawner : MonoBehaviour
 		StartCoroutine(crawlerSpawner);
 		StartCoroutine(slimeSpawnerCoroutine());
         StartCoroutine(seekerSpawnerCoroutine());
-        StartCoroutine(GoblinSpawnerCoroutine());
 		lastScore = GM.score;
 
 	}
@@ -98,31 +91,7 @@ public class spawner : MonoBehaviour
 	}
 
 
-    IEnumerator GoblinSpawnerCoroutine()
-    {
-        //started = true;
-        while (spawnGoblins)
-        {
-            if (goblinSpawnCount == 1)
-            {
-                GameObject clone = Instantiate(goblin, randomSpawningPosition(), Quaternion.identity, transform);
-                clone.GetComponent<goblin_controller>().player = player;
-            }
-            else
-            {
-                for (int i = 1; i <= goblinSpawnCount; i++)
-                {
-                    GameObject clone = Instantiate(goblin, randomSpawningPosition(), Quaternion.identity, transform);
-                    clone.GetComponent<goblin_controller>().player = player;
 
-                }
-            }
-            yield return new WaitForSeconds(goblinSpawnFreq);
-            if (!spawnGoblins)
-                break;
-        }
-
-    }
 
 
     IEnumerator slimeSpawnerCoroutine()
@@ -244,11 +213,5 @@ public class spawner : MonoBehaviour
 		} while (Vector3.Distance(player.transform.position, P) <= 1.5f);
 		return P;
 	}
-
-
-
-
-
-    
 
 }

@@ -146,8 +146,6 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 1
   minSpeed: 0.3
-  defaultColor: {r: 0.20000002, g: 0.2627451, b: 0.34901962, a: 1}
-  fadeColor: {r: 0.20000002, g: 0.2627451, b: 0.34901962, a: 0.30980393}
 --- !u!114 &442665060676752021
 MonoBehaviour:
   m_ObjectHideFlags: 0

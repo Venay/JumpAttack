@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     public gameManager GM;
-    [SerializeField] public GameObject scorePop;
+    public GameObject scorePop;
     public bool isMoving = false;
 	public Camera cam;
     //public float wind;
@@ -55,9 +55,9 @@ public class playerController : MonoBehaviour
             
         }
 
-		
-		
-        Debug.DrawLine(transform.position,transform.position+(transform.up*attackRange), Color.red, 0f);
+
+        //transform.position = transform.position + new Vector3(-1, 1, 0) * .8f * Time.deltaTime;
+        //Debug.DrawLine(transform.position,transform.position+(transform.up*attackRange), Color.red, 0f);
 
         //transform.position += new Vector3(-1, 1, 0)*wind;
     }

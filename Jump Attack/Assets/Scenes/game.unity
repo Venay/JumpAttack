@@ -578,6 +578,7 @@ MonoBehaviour:
   spawnSeekers: 1
   seeker: {fileID: 8018150410401988473, guid: 3b30ba03717c11a4195a7dec5e384add, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
   seekerSpawnCount: 2
 <<<<<<< HEAD
   seekerSpawnFreq: 10
@@ -588,6 +589,10 @@ MonoBehaviour:
   goblinSpawnCount: 15
   goblinSpawnFreq: 1.5
 >>>>>>> 2ff75dbe2f833b1a475eb1b904f1d89f85487594
+=======
+  seekerSpawnCount: 1
+  seekerSpawnFreq: 15
+>>>>>>> parent of 2ff75db... with goblins
 =======
   seekerSpawnCount: 1
   seekerSpawnFreq: 15
